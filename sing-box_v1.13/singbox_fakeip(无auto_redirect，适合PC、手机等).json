@@ -94,20 +94,13 @@
     {
       "type": "selector",
       "tag": "Default",
-      "outbounds": ["Auto"]
-    },
-    {
-      "type": "urltest",
-      "tag": "Auto",
-      "outbounds": [],
-      "interval": "3m",
-      "tolerance": 30
-    },
-    {
-      "type": "selector",
-      "tag": "Relay",
-      "outbounds": ["Direct-Out"]
-    },
+      "outbounds": [
+        "Auto-SG",
+        "Auto-JP",
+        "Auto-US",
+        "Auto"
+      ]
+    },    
     {
       "type": "selector",
       "tag": "PayPal",
@@ -131,12 +124,50 @@
     {
       "type": "selector",
       "tag": "Telegram",
-      "outbounds": ["Default", "Auto"]
+      "outbounds": [
+        "Auto-SG",
+        "Auto-JP",
+        "Auto-US",
+        "Auto"
+      ]
     },
     {
       "type": "selector",
       "tag": "Instagram",
       "outbounds": ["Default", "Auto"]
+    },
+    {
+      "type": "urltest",
+      "tag": "Auto-SG",
+      "outbounds": [],
+      "interval": "3m",
+      "tolerance": 30
+    },
+    {
+      "type": "urltest",
+      "tag": "Auto-JP",
+      "outbounds": [],
+      "interval": "3m",
+      "tolerance": 30
+    },
+    {
+      "type": "urltest",
+      "tag": "Auto-US",
+      "outbounds": [],
+      "interval": "3m",
+      "tolerance": 30
+    },
+    {
+      "type": "urltest",
+      "tag": "Auto",
+      "outbounds": [],
+      "interval": "3m",
+      "tolerance": 30
+    },
+    {
+      "type": "selector",
+      "tag": "Relay",
+      "outbounds": ["Direct-Out"]
     },
     {
       "type": "selector",
