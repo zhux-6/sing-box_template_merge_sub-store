@@ -98,6 +98,8 @@
         "Auto-SG",
         "Auto-JP",
         "Auto-US",
+        "Auto-HK",
+        "Auto-TW",
         "Auto"
       ]
     },    
@@ -128,6 +130,8 @@
         "Auto-SG",
         "Auto-JP",
         "Auto-US",
+        "Auto-HK",
+        "Auto-TW",
         "Auto"
       ]
     },
@@ -160,6 +164,20 @@
     {
       "type": "urltest",
       "tag": "Auto",
+      "outbounds": [],
+      "interval": "3m",
+      "tolerance": 30
+    },
+    {
+      "type": "urltest",
+      "tag": "Auto-HK",
+      "outbounds": [],
+      "interval": "3m",
+      "tolerance": 30
+    },
+    {
+      "type": "urltest",
+      "tag": "Auto-TW",
       "outbounds": [],
       "interval": "3m",
       "tolerance": 30
