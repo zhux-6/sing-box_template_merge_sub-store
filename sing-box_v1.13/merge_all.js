@@ -47,15 +47,78 @@ config.outbounds.push(...proxies);
 // 6. 准备 tag 列表
 const allTags = proxies.map(p => p.tag);
 const terminalTags = proxies.filter(p => !p.detour).map(p => p.tag);
+const sgTags = terminalTags.filter(tag =>
+  /新加坡|狮城|SG|Singapore/i.test(tag)
+);
 
+const jpTags = terminalTags.filter(tag =>
+  /日本|JP|Japan|Tokyo|Osaka/i.test(tag)
+);
+
+const hkTags = terminalTags.filter(tag =>
+  /香港|HK|Hong Kong/i.test(tag)
+);
+
+const usTags = terminalTags.filter(tag =>
+  /美国|US|United States|Los Angeles|San Jose/i.test(tag)
+);
+
+const twTags = terminalTags.filter(tag =>
+  /台湾|TW|Taiwan/i.test(tag)
+);
 // 7. 遍历分组追加节点
 config.outbounds.forEach(group => {
   if (!Array.isArray(group.outbounds) || group.tag === "Direct-Out") return;
 
-  if (group.tag === "Relay") {
-    group.outbounds.push(...terminalTags);
-  } else {
-    group.outbounds.push(...allTags);
+  switch (group.tag) {
+
+    case "AUTO":
+    case "AUTO-SG":
+      group.outbounds.push(...sgTags);
+      break;
+
+    case "AUTO-JP":
+      group.outbounds.push(...jpTags);
+      break;
+
+    case "AUTO-HK":
+      group.outbounds.push(...hkTags);
+      break;
+
+    case "AUTO-US":
+      group.outbounds.push(...usTags);
+      break;
+
+    case "AUTO-TW":
+      group.outbounds.push(...twTags);
+      break;
+
+    case "SG":
+      group.outbounds.push(...sgTags);
+      break;
+
+    case "JP":
+      group.outbounds.push(...jpTags);
+      break;
+
+    case "HK":
+      group.outbounds.push(...hkTags);
+      break;
+
+    case "US":
+      group.outbounds.push(...usTags);
+      break;
+
+    case "TW":
+      group.outbounds.push(...twTags);
+      break;
+
+    case "Relay":
+      group.outbounds.push(...terminalTags);
+      break;
+
+    default:
+      group.outbounds.push(...allTags);
   }
 });
 
