@@ -79,56 +79,56 @@ const twTags = terminalTags.filter(tag =>
 // 7. 遍历分组追加节点
 config.outbounds.forEach(group => {
   if (!Array.isArray(group.outbounds) || group.tag === "Direct-Out") return;
-
+  
   switch (group.tag) {
-
     case "AUTO":
     case "AUTO-SG":
       group.outbounds.push(...sgTags);
       break;
-
     case "AUTO-JP":
       group.outbounds.push(...jpTags);
       break;
-
     case "AUTO-HK":
       group.outbounds.push(...hkTags);
       break;
-
     case "AUTO-US":
       group.outbounds.push(...usTags);
       break;
-
     case "AUTO-TW":
       group.outbounds.push(...twTags);
       break;
-
     case "SG":
       group.outbounds.push(...sgTags);
       break;
-
     case "JP":
       group.outbounds.push(...jpTags);
       break;
-
     case "HK":
       group.outbounds.push(...hkTags);
       break;
-
     case "US":
       group.outbounds.push(...usTags);
       break;
-
     case "TW":
       group.outbounds.push(...twTags);
       break;
-
     case "Relay":
       group.outbounds.push(...terminalTags);
       break;
-
-    default:
+    // 需要全部节点的选择器组，明确列出
+    case "Default":
+    case "PayPal":
+    case "AI-Service":
+    case "TikTok":
+    case "Streaming-Media":
+    case "Telegram":
+    case "Instagram":
+    case "Emby":
       group.outbounds.push(...allTags);
+      break;
+    // 其他所有分组：不动，保持模板原样
+    default:
+      break;
   }
 });
 
