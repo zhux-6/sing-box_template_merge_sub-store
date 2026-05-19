@@ -80,7 +80,7 @@
       "route_exclude_address": ["10.0.0.0/8", "100.64.0.0/10", "169.254.0.0/16", "172.16.0.0/12", "192.0.0.0/24", "192.168.0.0/16"],
       "route_exclude_address_set": ["cnip"],
       "strict_route": false,
-      "endpoint_independent_nat": ture,
+      "endpoint_independent_nat": true,
       "stack": "mixed"
     },
     {
