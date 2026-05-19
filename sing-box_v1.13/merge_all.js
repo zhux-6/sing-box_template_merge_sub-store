@@ -41,7 +41,17 @@ let proxies = await produceArtifact({
 const existingTags = config.outbounds.map(o => o.tag);
 proxies = proxies.filter(p => !existingTags.includes(p.tag));
 
-// 5. 添加新节点到 outbounds
+// 5. 注入 keepalive 后再添加节点
+const PROXY_TYPES = ['trojan', 'vmess', 'vless', 'shadowsocks',
+                     'shadowsocksr', 'hysteria', 'hysteria2', 'tuic', 'wireguard'];
+proxies = proxies.map(p => {
+  if (!PROXY_TYPES.includes(p.type)) return p;
+  return {
+    ...p,
+    "tcp_keep_alive": "30s",
+    "tcp_keep_alive_interval": "15s"
+  };
+});
 config.outbounds.push(...proxies);
 
 // 6. 准备 tag 列表
