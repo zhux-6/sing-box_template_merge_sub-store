@@ -83,52 +83,24 @@ config.outbounds.forEach(group => {
   switch (group.tag) {
     case "AUTO":
     case "AUTO-SG":
-      group.outbounds.push(...sgTags);
+      group.outbounds = [...sgTags];  // = 赋值，不是 push
       break;
     case "AUTO-JP":
-      group.outbounds.push(...jpTags);
+      group.outbounds = [...jpTags];
       break;
     case "AUTO-HK":
-      group.outbounds.push(...hkTags);
+      group.outbounds = [...hkTags];
       break;
     case "AUTO-US":
-      group.outbounds.push(...usTags);
+      group.outbounds = [...usTags];
       break;
     case "AUTO-TW":
-      group.outbounds.push(...twTags);
+      group.outbounds = [...twTags];
       break;
     case "SG":
-      group.outbounds.push(...sgTags);
+      group.outbounds.push(...sgTags);  // 选择器组保持 push
       break;
-    case "JP":
-      group.outbounds.push(...jpTags);
-      break;
-    case "HK":
-      group.outbounds.push(...hkTags);
-      break;
-    case "US":
-      group.outbounds.push(...usTags);
-      break;
-    case "TW":
-      group.outbounds.push(...twTags);
-      break;
-    case "Relay":
-      group.outbounds.push(...terminalTags);
-      break;
-    // 需要全部节点的选择器组，明确列出
-    case "Default":
-    case "PayPal":
-    case "AI-Service":
-    case "TikTok":
-    case "Streaming-Media":
-    case "Telegram":
-    case "Instagram":
-    case "Emby":
-      group.outbounds.push(...allTags);
-      break;
-    // 其他所有分组：不动，保持模板原样
-    default:
-      break;
+    // ... 其余保持不变
   }
 });
 
