@@ -77,33 +77,37 @@ const twTags = terminalTags.filter(tag =>
   /台湾|TW|Taiwan/i.test(tag)
 );
 // 7. 遍历分组追加节点
+// 7. 遍历分组追加节点
 config.outbounds.forEach(group => {
   if (!Array.isArray(group.outbounds) || group.tag === "Direct-Out") return;
-  
+
   switch (group.tag) {
-    case "AUTO":
-    case "AUTO-SG":
-      group.outbounds = [...sgTags];  // = 赋值，不是 push
+    case "Auto-SG":
+      group.outbounds = [...sgTags];
       break;
-    case "AUTO-JP":
+    case "Auto-JP":
       group.outbounds = [...jpTags];
       break;
-    case "AUTO-HK":
+    case "Auto-HK":
       group.outbounds = [...hkTags];
       break;
-    case "AUTO-US":
+    case "Auto-US":
       group.outbounds = [...usTags];
       break;
-    case "AUTO-TW":
+    case "Auto-TW":
       group.outbounds = [...twTags];
       break;
-    case "SG":
-      group.outbounds.push(...sgTags);  // 选择器组保持 push
+    case "Auto":
+      group.outbounds = [...allTags];
       break;
-    // ... 其余保持不变
+    case "Relay":
+      group.outbounds.push(...terminalTags);
+      break;
+    default:
+      group.outbounds.push(...allTags);
+      break;
   }
 });
-
 // 8. 分组内去重
 config.outbounds.forEach(group => {
   if (Array.isArray(group.outbounds)) {
